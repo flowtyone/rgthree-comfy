@@ -211,7 +211,8 @@ class Rgthree extends EventTarget {
                     }, 5000);
                 }
             }, 100);
-            loadGraphData && loadGraphData.call(app, ...arguments);
+            if(loadGraphData)
+                return loadGraphData.call(app, ...arguments);
         };
     }
     getNodeFromInitialGraphToPromptSerializedWorkflowBecauseComfyUIBrokeStuff(node) {

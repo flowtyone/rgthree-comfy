@@ -305,7 +305,7 @@ class Rgthree extends EventTarget {
         let link = document.createElement("link");
         link.rel = "stylesheet";
         link.type = "text/css";
-        link.href = "extensions/rgthree-comfy/rgthree.css";
+        link.href = "comfy/extensions/rgthree-comfy/rgthree.css";
         document.head.appendChild(link);
     }
     setLogLevel(level) {

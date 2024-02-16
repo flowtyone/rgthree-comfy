@@ -109,7 +109,7 @@ export class PowerPrompt {
         let data = Object.assign({}, ((_b = this.nodeData.input) === null || _b === void 0 ? void 0 : _b.optional) || {}, ((_c = this.nodeData.input) === null || _c === void 0 ? void 0 : _c.hidden) || {});
         for (const [key, value] of Object.entries(data)) {
             if (Array.isArray(value[0])) {
-                let values = value[0];
+                let values = value[0].map((a)=>typeof a === "object" && a.name ? a.name : a);
                 if (key.startsWith('insert')) {
                     values = filter ? values.filter((v, i) => i < 1 || (i == 1 && v.match(/^disable\s[a-z]/i)) || (filter === null || filter === void 0 ? void 0 : filter.test(v))) : values;
                     const shouldShow = values.length > 2 || (values.length > 1 && !values[1].match(/^disable\s[a-z]/i));

@@ -18,7 +18,7 @@ export class RgthreeImageComparer extends RgthreeBaseServerNode {
     onExecuted(output) {
         var _a;
         (_a = super.onExecuted) === null || _a === void 0 ? void 0 : _a.call(this, output);
-        this.canvasWidget.value = (output.images || []).map((d) => api.apiURL(`/view?filename=${encodeURIComponent(d.filename)}&type=${d.type}&subfolder=${d.subfolder}${app.getPreviewFormatParam()}${app.getRandParam()}`));
+        this.canvasWidget.value = (output.images || []).map((d) => api.apiURL(`/view?filename=${encodeURIComponent(d.filename)}&file_url=${encodeURIComponent(d.file_url)}&type=${d.type}&subfolder=${d.subfolder}${app.getPreviewFormatParam()}${app.getRandParam()}`));
     }
     drawWidgetImage(ctx, image, y, cropX) {
         if (!(image === null || image === void 0 ? void 0 : image.naturalWidth) || !(image === null || image === void 0 ? void 0 : image.naturalHeight)) {

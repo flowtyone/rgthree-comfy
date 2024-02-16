@@ -4,10 +4,10 @@ import { SERVICE as CONFIG_SERVICE } from "./config_service.js";
 import { fixBadLinks } from "../../rgthree/common/link_fixer.js";
 import { wait } from "../../rgthree/common/shared_utils.js";
 import { replaceNode, waitForCanvas, waitForGraph } from "./utils.js";
-import { NodeTypesString } from "./constants.js";
-import { RgthreeProgressBar } from "../../rgthree/common/progress_bar.js";
+//import { NodeTypesString } from "./constants.js";
+//import { RgthreeProgressBar } from "../../rgthree/common/progress_bar.js";
 //import { RgthreeConfigDialog } from "./config.js";
-import { iconGear, iconReplace, iconStarFilled, logoRgthree } from "../../rgthree/common/media/svgs.js";
+//import { iconGear, iconReplace, iconStarFilled, logoRgthree } from "../../rgthree/common/media/svgs.js";
 export var LogLevel;
 (function (LogLevel) {
     LogLevel[LogLevel["IMPORTANT"] = 1] = "IMPORTANT";
@@ -120,55 +120,55 @@ class Rgthree extends EventTarget {
     initializeProgressBar() {
         var _a;
         if (CONFIG_SERVICE.getConfigValue("features.progress_bar.enabled")) {
-            if (!this.progressBarEl) {
-                this.progressBarEl = RgthreeProgressBar.create();
-                this.progressBarEl.addEventListener("contextmenu", async (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                });
-                this.progressBarEl.addEventListener("pointerdown", async (e) => {
-                    var _a;
-                    LiteGraph.closeAllContextMenus();
-                    if (e.button == 2) {
-                        const canvas = await waitForCanvas();
-                        new LiteGraph.ContextMenu(this.getRgthreeContextMenuItems(), {
-                            title: `<div class="rgthree-contextmenu-item rgthree-contextmenu-title-rgthree-comfy">${logoRgthree} rgthree-comfy</div>`,
-                            left: e.clientX,
-                            top: 5,
-                        }, canvas.getCanvasWindow());
-                        return;
-                    }
-                    if (e.button == 0) {
-                        const nodeId = (_a = this.progressBarEl) === null || _a === void 0 ? void 0 : _a.currentNodeId;
-                        if (nodeId) {
-                            const [canvas, graph] = await Promise.all([waitForCanvas(), waitForGraph()]);
-                            const node = graph.getNodeById(Number(nodeId));
-                            if (node) {
-                                canvas.centerOnNode(node);
-                                e.stopPropagation();
-                                e.preventDefault();
-                            }
-                        }
-                        return;
-                    }
-                });
-            }
-            if (!this.progressBarEl.parentElement) {
-                document.body.appendChild(this.progressBarEl);
-            }
-            const height = CONFIG_SERVICE.getConfigValue("features.progress_bar.height") || 14;
-            this.progressBarEl.style.height = `${height}px`;
-            const fontSize = Math.max(10, Number(height) - 10);
-            this.progressBarEl.style.fontSize = `${fontSize}px`;
-            this.progressBarEl.style.fontWeight = fontSize <= 12 ? "bold" : "normal";
-            if (CONFIG_SERVICE.getConfigValue("features.progress_bar.position") === "bottom") {
-                this.progressBarEl.style.bottom = `0px`;
-                this.progressBarEl.style.top = `auto`;
-            }
-            else {
-                this.progressBarEl.style.top = `0px`;
-                this.progressBarEl.style.bottom = `auto`;
-            }
+            // if (!this.progressBarEl) {
+            //     this.progressBarEl = RgthreeProgressBar.create();
+            //     this.progressBarEl.addEventListener("contextmenu", async (e) => {
+            //         e.stopPropagation();
+            //         e.preventDefault();
+            //     });
+            //     this.progressBarEl.addEventListener("pointerdown", async (e) => {
+            //         var _a;
+            //         LiteGraph.closeAllContextMenus();
+            //         if (e.button == 2) {
+            //             const canvas = await waitForCanvas();
+            //             new LiteGraph.ContextMenu(this.getRgthreeContextMenuItems(), {
+            //                 title: `<div class="rgthree-contextmenu-item rgthree-contextmenu-title-rgthree-comfy">${logoRgthree} rgthree-comfy</div>`,
+            //                 left: e.clientX,
+            //                 top: 5,
+            //             }, canvas.getCanvasWindow());
+            //             return;
+            //         }
+            //         if (e.button == 0) {
+            //             const nodeId = (_a = this.progressBarEl) === null || _a === void 0 ? void 0 : _a.currentNodeId;
+            //             if (nodeId) {
+            //                 const [canvas, graph] = await Promise.all([waitForCanvas(), waitForGraph()]);
+            //                 const node = graph.getNodeById(Number(nodeId));
+            //                 if (node) {
+            //                     canvas.centerOnNode(node);
+            //                     e.stopPropagation();
+            //                     e.preventDefault();
+            //                 }
+            //             }
+            //             return;
+            //         }
+            //     });
+            // }
+            // if (!this.progressBarEl.parentElement) {
+            //     document.body.appendChild(this.progressBarEl);
+            // }
+            // const height = CONFIG_SERVICE.getConfigValue("features.progress_bar.height") || 14;
+            // this.progressBarEl.style.height = `${height}px`;
+            // const fontSize = Math.max(10, Number(height) - 10);
+            // this.progressBarEl.style.fontSize = `${fontSize}px`;
+            // this.progressBarEl.style.fontWeight = fontSize <= 12 ? "bold" : "normal";
+            // if (CONFIG_SERVICE.getConfigValue("features.progress_bar.position") === "bottom") {
+            //     this.progressBarEl.style.bottom = `0px`;
+            //     this.progressBarEl.style.top = `auto`;
+            // }
+            // else {
+            //     this.progressBarEl.style.top = `0px`;
+            //     this.progressBarEl.style.bottom = `auto`;
+            // }
         }
         else {
             (_a = this.progressBarEl) === null || _a === void 0 ? void 0 : _a.remove();
